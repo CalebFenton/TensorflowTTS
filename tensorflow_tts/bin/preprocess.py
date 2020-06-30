@@ -147,10 +147,6 @@ def main():
     np.save(os.path.join(args.outdir, "train_utt_ids.npy"), train_utt_ids)
     np.save(os.path.join(args.outdir, "valid_utt_ids.npy"), valid_utt_ids)
 
-    pbar = tqdm(initial=0,
-                total=len(processor.items),
-                desc="[Preprocessing]")
-
     # process each data
     def save_to_file(idx):
         sample = processor.get_one_sample(idx)
@@ -247,12 +243,10 @@ def main():
         else:
             raise ValueError("support only npy format.")
 
-        pbar.update(1)
-
     # apply multi-processing Pool
     p = Pool(nodes=args.n_cpus)
-    p.map(save_to_file, range(len(processor.items)))
-    pbar.close()
+    work = tqdm(range(len(processor.items)), desc="[Preprocessing]")
+    list(p.imap(save_to_file, work))
 
 
 if __name__ == "__main__":
