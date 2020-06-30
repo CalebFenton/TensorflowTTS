@@ -23,7 +23,7 @@ if LooseVersion(pip.__version__) < LooseVersion("19"):
 # TODO(@dathudeptrai) update requirement if needed.
 requirements = {
     "install": [
-        "tensorflow-gpu>=2.2.0",
+        "tensorflow>=2.2.0",
         "tensorflow-addons>=0.9.1",
         "setuptools>=38.5.1",
         "librosa>=0.7.0",
@@ -36,11 +36,12 @@ requirements = {
         "unidecode>=1.1.1",
         "inflect>=4.1.0",
         "scikit-learn>=0.22.0",
+        "scipy==1.4.1",
+        "numpy",
+        "numba==0.48.0",
         "pyworld>=0.2.10"
     ],
     "setup": [
-        "numpy",
-        "pytest-runner",
     ],
     "test": [
         "pytest>=3.3.0",
