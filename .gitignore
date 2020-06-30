@@ -1,4 +1,7 @@
- 
+venv/
+dist/
+build/
+
 # general
 *~
 *.pyc
